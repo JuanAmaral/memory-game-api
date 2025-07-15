@@ -6,7 +6,8 @@ import {
   getLeastLastFound,
   getStats,
   getDailyStatsHandler,
-  getWeeklyStatsHandler
+  getWeeklyStatsHandler,
+  getAverageScoreHandler
 } from '../controllers/stats.controller';
 import { routeAdapter } from '../adapters/express-route.adapter';
 
@@ -19,5 +20,6 @@ router.get('/last-found/most', routeAdapter(getMostLastFound));
 router.get('/last-found/least', routeAdapter(getLeastLastFound));
 router.get('/daily', routeAdapter(getDailyStatsHandler));
 router.get('/weekly', routeAdapter(getWeeklyStatsHandler));
+router.get('/avg-score', routeAdapter(getAverageScoreHandler))
 
 export default router;

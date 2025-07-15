@@ -1,3 +1,4 @@
+import { RankingModel } from '../models/ranking.model';
 import { StatsModel, StatsOverview } from '../models/stats.model';
 import { StatsQuery } from '../views/stats.view';
 import { SortOrder } from 'mongoose';
@@ -161,4 +162,14 @@ export const getWeeklyStats = async (date: Date = new Date()) => {
     startDate: startOfWeek,
     endDate: endOfWeek
   });
+};
+
+export const getAverageScore = async () => {
+  return RankingModel.aggregate(
+    [{ $group: {
+      _id: null,
+      avgScore: { $avg: "$score" }
+      },
+    }]
+  );
 };

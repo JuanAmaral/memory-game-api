@@ -6,7 +6,8 @@ import {
   leastLastFound,
   getStatsOverview,
   getDailyStats,
-  getWeeklyStats
+  getWeeklyStats,
+  getAverageScore
 } from '../services/stats.service';
 import { ok, serverError, unprocessable } from '../helpers/httpResponse';
 import { Controller } from '../adapters/express-route.adapter';
@@ -102,5 +103,15 @@ export const getWeeklyStatsHandler: Controller = async (req: Request) => {
   } catch (error) {
     console.error('Error getting weekly stats:', error);
     return serverError('Failed to get weekly stats');
+  }
+}; 
+
+export const getAverageScoreHandler: Controller = async (req: Request) => {
+  try {
+    const avgScore = await getAverageScore();
+    return ok(avgScore);
+  } catch (error) {
+    console.error('Error getting average score:', error);
+    return serverError('Failed to get average score');
   }
 }; 
